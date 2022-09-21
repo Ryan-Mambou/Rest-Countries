@@ -23,11 +23,9 @@ function Country({ country }) {
     <Layout />
 
     <div className='w-11/12 mt-20 m-auto'>
-    <button className='bg-white px-7 py-1 rounded-lg shadow-md flex flex-row items-center font-light'>
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-5 h-5 mr-1">
+    <Link href='/' className='bg-white px-7 cursor-pointer py-1 rounded-lg shadow-md flex flex-row items-center font-light'><a className='flex flex-row bg-white py-1 px-5 items-center rounded-lg w-28'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-5 h-5 mr-1">
   <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-</svg>
-Back</button>
+</svg>Back</a></Link>
     </div>
 
     <div className='flex flex-col md:grid md:grid-cols-2 w-11/12 m-auto mt-20'>
@@ -74,7 +72,7 @@ Back</button>
 
         <div>
           <span className='font-bold text-sm'>Border Countries: 
-          {country[0].borders.length > 0 ? country[0].borders.map(border => 
+          {country[0].hasOwnProperty('borders') && country[0].borders.length > 0 ? country[0].borders.map(border => 
           <span className='rounded-lg ml-3 shadow-md bg-white py-1 px-2 text-sm font-light'>{border}</span>
           ) : ''}
           </span>
