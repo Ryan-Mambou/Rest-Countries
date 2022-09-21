@@ -19,7 +19,7 @@ function Country({ country }) {
 
     console.log(country)
   return (
-    <div className='bg-gray-100 h-screen w-screen'>
+    <div className='bg-gray-100 h-screen w-screen font-nunito'>
     <Layout />
 
     <div className='w-11/12 mt-20 m-auto'>
