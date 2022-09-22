@@ -21,11 +21,16 @@ export async function getStaticProps(){
 
 export default function Home({countries}) {
 
+  const [dropdown, showDropdown] = useState(false);
   const [query, setQuery] = useState('');
   const filteredCountries = countries.filter(country => country.name.common.toLowerCase().includes(query));
 
   const handleChange = (e) => {
     setQuery(e.target.value)
+  }
+  
+  const handleDropdown = () => {
+    showDropdown(!dropdown)
   }
 
   console.log(filteredCountries)
@@ -40,7 +45,7 @@ export default function Home({countries}) {
       <Layout/>
       <div className='w-11/12 m-auto mt-40 flex flex-row justify-between items-center'>
         <Search handleChange={handleChange}/>
-        <Filter />
+        <Filter handleDropdown={handleDropdown} dropdown={dropdown}/>
         </div>
         <CountryList countries={filteredCountries}/>
     </div>
