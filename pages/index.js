@@ -1,11 +1,9 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
 import Layout from '../components/Layout'
 import Search from '../components/Search'
 import { useState } from 'react'
 import Filter from '../components/Filter'
 import axios from 'axios'
-import CountryCard from '../components/CountryCard'
 import CountryList from '../components/CountryList'
 
 
@@ -22,7 +20,15 @@ export async function getStaticProps(){
 
 
 export default function Home({countries}) {
-  console.log(countries)
+
+  const [query, setQuery] = useState('');
+  const filteredCountries = countries.filter(country => country.name.common.toLowerCase().includes(query));
+
+  const handleChange = (e) => {
+    setQuery(e.target.value)
+  }
+
+  console.log(filteredCountries)
 
   return (
     <div className='bg-gray-100 font-nunito'>
@@ -33,10 +39,10 @@ export default function Home({countries}) {
       </Head>
       <Layout/>
       <div className='w-11/12 m-auto mt-40 flex flex-row justify-between items-center'>
-        <Search />
+        <Search handleChange={handleChange}/>
         <Filter />
         </div>
-        <CountryList countries={countries}/>
+        <CountryList countries={filteredCountries}/>
     </div>
   )
 }
