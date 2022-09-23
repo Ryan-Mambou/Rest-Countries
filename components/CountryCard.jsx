@@ -5,8 +5,8 @@ function CountryCard({ country }) {
 
   return (
     <Link href={`country/${country.cca2}`}>
-    <div className='bg-white shadow-lg  rounded-md overflow-hidden h-[25rem] cursor-pointer dark:bg-slate-800 dark:text-white'>
-        <img src={country.flags.png} alt='Country card :h-56 w-full object-cover'/>
+    <div className='bg-white shadow-lg rounded-md overflow-hidden h-[25rem] cursor-pointer dark:bg-slate-800 dark:text-white'>
+        <img src={country.flags.png} alt='Country card md:h-56 w-full object-cover'/>
         <span className='px-3 py-2 block font-bold text-xl '>{country.name.common}</span>
         <span className='px-3 py-2 block'><span className='font-bold'>Popoulation:</span> <span className='font-light'>{country.population}</span></span>
         <span className='px-3 py-2 block'><span className='font-bold'>Region:</span> <span className='font-light'>{country.region}</span></span>

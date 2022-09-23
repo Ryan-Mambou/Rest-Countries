@@ -6,7 +6,6 @@ import Link from 'next/link';
 export async function getServerSideProps( {params} ){
     const code = params.code;
     const data = await axios.get(`https://restcountries.com/v3.1/alpha/${code}`)
-    console.log(data)
 
     return {
         props: {
@@ -18,14 +17,12 @@ export async function getServerSideProps( {params} ){
 function Country({ country }) {
   const [darkMode, setDarkMode] = useState(false)
 
-  
-
   const toggleDarkMode = () => {
     setDarkMode(!darkMode)
 }
 
   return (
-    <div className='bg-gray-100 h-screen w-screen font-nunito dark:bg-slate-900 dark:text-white'>
+    <div className='bg-gray-100 pb-20 font-nunito dark:bg-slate-900 dark:text-white'>
     <Layout darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
 
     <div className='w-11/12 mt-20 m-auto'>
