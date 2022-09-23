@@ -46,7 +46,7 @@ function Country({ country }) {
             <span className='ml-10 font-medium text-sm'>Top level Domain:{' '} 
             <span className='font-light ml-3'>
             { country[0].tld.length > 1 ? country[0].tld.map(tld => (
-              <span>{tld} </span>
+              <span key={tld}>{tld} </span>
             )): country[0].tld }</span>
             </span>
           </div>
@@ -62,7 +62,7 @@ function Country({ country }) {
             <span className='font-medium text-sm'>Region: <span className='font-light ml-3'>{country[0].region}</span></span>
             <span className='ml-10 font-medium text-sm'>Languages: 
             <span className='font-light ml-3'>
-            {Object.values(country[0].languages).length > 1 ? Object.values(country[0].languages).map(lan => <span className='ml-2'>{lan}</span>) : Object.values(country[0].languages)[0] }
+            {Object.values(country[0].languages).length > 1 ? Object.values(country[0].languages).map((lan) => <span key={lan} className='ml-2'>{lan}</span>) : Object.values(country[0].languages)[0] }
               </span>
               </span>
           </div>
@@ -75,8 +75,8 @@ function Country({ country }) {
 
         <div>
           <span className='font-bold text-sm'>Border Countries: 
-          {country[0].hasOwnProperty('borders') && country[0].borders.length > 0 ? country[0].borders.map(border => 
-          <span className='rounded-lg ml-3 shadow-md bg-white py-1 px-2 text-sm font-light dark:bg-slate-800 dark:text-white'>{border}</span>
+          {country[0].hasOwnProperty('borders') && country[0].borders.length > 0 ? country[0].borders.map((border, index) => 
+          <span key={index} className='rounded-lg ml-3 shadow-md bg-white py-1 px-2 text-sm font-light dark:bg-slate-800 dark:text-white'>{border}</span>
           ) : ''}
           </span>
         </div>
