@@ -51,15 +51,7 @@ const changeTheme = () => {
   setTheme(theme === 'light' ? 'dark' : 'light')
 }
 
-useEffect(() => {
-  const html = document.querySelector('html');
-  if (darkMode){
-    html.classList.add('dark')
-  }
-  else{
-    html.classList.remove('dark')
-  }
-}, [darkMode])
+
 
   const handleDropdown = () => {
     showDropdown(!dropdown)

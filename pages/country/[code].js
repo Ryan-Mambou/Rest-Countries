@@ -18,21 +18,11 @@ export async function getServerSideProps( {params} ){
 function Country({ country }) {
   const [darkMode, setDarkMode] = useState(false)
 
-  useEffect(() => {
-    const html = document.querySelector('html');
-    if (darkMode){
-      html.classList.add('dark')
-    }
-    else{
-      html.classList.remove('dark')
-    }
-  }, [darkMode])
+  
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode)
 }
-
-console.log(darkMode)
 
   return (
     <div className='bg-gray-100 h-screen w-screen font-nunito dark:bg-slate-900 dark:text-white'>
