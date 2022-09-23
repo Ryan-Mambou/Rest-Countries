@@ -26,8 +26,6 @@ export default function Home({countries}) {
   const [query, setQuery] = useState('');
   const [continentToSort, setContinentToSort] = useState('');
   const sorted = _.orderBy(countries, item => item.name.common, ['asc']);
-  //const [test, setTest] = useState(sorted)
-  //const filtered = sorted.filter(country => country.name.common.toLowerCase().includes(query));
 
   const filterdByRegion = (array) => {
   return array.filter(
