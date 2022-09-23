@@ -1,10 +1,11 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
 import Search from '../components/Search'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Filter from '../components/Filter'
 import axios from 'axios'
 import CountryList from '../components/CountryList'
+import _ from 'lodash'
 
 
 export async function getStaticProps(){
@@ -23,17 +24,27 @@ export default function Home({countries}) {
 
   const [dropdown, showDropdown] = useState(false);
   const [query, setQuery] = useState('');
-  const filteredCountries = countries.filter(country => country.name.common.toLowerCase().includes(query));
+  const [continentToSort, setContinentToSort] = useState('');
+  const sorted = _.orderBy(countries, item => item.name.common, ['asc']);
+  //const [test, setTest] = useState(sorted)
+  //const filtered = sorted.filter(country => country.name.common.toLowerCase().includes(query));
+
+  const filterdByRegion = (array) => {
+  return array.filter(
+    (el) => 
+    el.region.includes(continentToSort) && el.name.common.toLowerCase().includes(query)
+  )
+  }
+
+  const filtered = filterdByRegion(sorted)
 
   const handleChange = (e) => {
     setQuery(e.target.value)
   }
-  
+
   const handleDropdown = () => {
     showDropdown(!dropdown)
   }
-
-  console.log(filteredCountries)
 
   return (
     <div className='bg-gray-100 font-nunito'>
@@ -45,9 +56,9 @@ export default function Home({countries}) {
       <Layout/>
       <div className='w-11/12 m-auto mt-40 flex flex-row justify-between items-center'>
         <Search handleChange={handleChange}/>
-        <Filter handleDropdown={handleDropdown} dropdown={dropdown}/>
+        <Filter handleDropdown={handleDropdown} dropdown={dropdown} setContinentToSort={setContinentToSort} />
         </div>
-        <CountryList countries={filteredCountries}/>
+        <CountryList countries={filtered}/>
     </div>
   )
 }
