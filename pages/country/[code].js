@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Layout from '../../components/Layout';
 import Link from 'next/link';
 
@@ -16,14 +16,30 @@ export async function getServerSideProps( {params} ){
 }
 
 function Country({ country }) {
+  const [darkMode, setDarkMode] = useState(false)
 
-    console.log(country)
+  useEffect(() => {
+    const html = document.querySelector('html');
+    if (darkMode){
+      html.classList.add('dark')
+    }
+    else{
+      html.classList.remove('dark')
+    }
+  }, [darkMode])
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode)
+}
+
+console.log(darkMode)
+
   return (
-    <div className='bg-gray-100 h-screen w-screen font-nunito'>
-    <Layout />
+    <div className='bg-gray-100 h-screen w-screen font-nunito dark:bg-slate-900 dark:text-white'>
+    <Layout darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
 
     <div className='w-11/12 mt-20 m-auto'>
-    <Link href='/' className='bg-white px-7 cursor-pointer py-1 rounded-lg shadow-md flex flex-row items-center font-light'><a className='flex flex-row bg-white py-1 px-5 items-center rounded-lg w-28'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 mr-1">
+    <Link href='/' className='bg-white dark:bg-slate-800 dark:text-white px-7 cursor-pointer py-1 rounded-lg shadow-md flex flex-row items-center font-light'><a className='flex flex-row bg-white dark:bg-slate-800 dark:text-white py-1 px-5 items-center rounded-lg w-28'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 mr-1">
   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
 </svg>Back</a></Link>
     </div>
@@ -73,7 +89,7 @@ function Country({ country }) {
         <div>
           <span className='font-bold text-sm'>Border Countries: 
           {country[0].hasOwnProperty('borders') && country[0].borders.length > 0 ? country[0].borders.map(border => 
-          <span className='rounded-lg ml-3 shadow-md bg-white py-1 px-2 text-sm font-light'>{border}</span>
+          <span className='rounded-lg ml-3 shadow-md bg-white py-1 px-2 text-sm font-light dark:bg-slate-800 dark:text-white'>{border}</span>
           ) : ''}
           </span>
         </div>

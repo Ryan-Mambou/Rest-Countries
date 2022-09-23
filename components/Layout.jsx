@@ -2,16 +2,10 @@ import React, { useState } from 'react'
 import { IoMoon } from "react-icons/io5";
 import { IoIosSunny } from "react-icons/io";
 
-function Layout() {
-
-    const [darkMode, setDarkMode] = useState(false)
-
-    const toggleDarkMode = () => {
-      setDarkMode(!darkMode)
-  }
+function Layout({toggleDarkMode, darkMode}) {
 
   return (
-    <div className='bg-white shadow-lg w-full'>
+    <div className={`bg-white shadow-lg w-full dark:bg-slate-800 dark:text-white ${darkMode && 'dark'}`}>
        <div className='flex flex-row w-11/12 m-auto justify-between items-center py-7'>
         <h1 className='text-2xl font-bold'>Where in the world?</h1>
         <span>
