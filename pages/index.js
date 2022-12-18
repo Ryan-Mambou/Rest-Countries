@@ -43,6 +43,7 @@ export default function Home({countries}) {
   const multipleSearch = (array) => {
     return array.filter(
     (el) => 
+    el.region.includes(continentToSort) &&
     Object.keys(el).some((parameter) => 
     el[parameter].toString().toLowerCase().includes(query)
     )
