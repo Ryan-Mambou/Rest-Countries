@@ -29,15 +29,27 @@ export default function Home({countries}) {
   const sorted = _.orderBy(countries, item => item.name.common, ['asc']);
   const [darkMode, setDarkMode] = useState(false)
 
-  //Function to sort by search and region
+  //Function for search filter for region
+  /** 
   const filterdByRegion = (array) => {
   return array.filter(
     (el) => 
     el.region.includes(continentToSort) && el.name.common.toLowerCase().includes(query)
   )
-  }
+  }*/
 
-  const filtered = filterdByRegion(sorted)
+  
+//Function for multiple search filter
+  const multipleSearch = (array) => {
+    return array.filter(
+    (el) => 
+    Object.keys(el).some((parameter) => 
+    el[parameter].toString().toLowerCase().includes(query)
+    )
+    )
+    }
+
+  const filtered = multipleSearch(sorted)
 
   const handleChange = (e) => {
     setQuery(e.target.value)
